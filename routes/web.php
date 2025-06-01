@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JurnalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,9 +13,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/jurnal', function () {
-    return view('jurnal/jurnalmain');
-})->middleware(['auth', 'verified'])->name('jurnal');
+
+// route juranl dan read jurnal di tabel admin
+Route::get('/jurnal', [JurnalController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('jurnal');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,5 +27,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// arahakan admin ke dasbioard admin
 Route::get('admin/dashboard', [HomeController::class, 'index']);
 
+//arahakan setelah berhasil upload jurnal
+Route::post('/jurnal', [JurnalController::class, 'store'])->name('jurnal.store');
