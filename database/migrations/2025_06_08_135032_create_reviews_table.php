@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jurnals', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('jurnal_id')->constrained('jurnals')->onDelete('cascade');
+            $table->json('checklist'); // menyimpan checklist yang dicek
+            $table->text('corrections')->nullable(); // catatan atau koreksi
+            $table->string('corrected_pdf_path')->nullable(); // PDF yang sudah dikoreksi
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('judul');    
-            $table->string('penulis');
-            $table->string('email');
-            $table->string('kategori')->nullable(); 
-            $table->text('abstrak');
-            $table->string('file_pdf')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurnal');
+        Schema::dropIfExists('reviews');
     }
 };

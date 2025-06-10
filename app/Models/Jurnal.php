@@ -12,8 +12,21 @@ class Jurnal extends Model
     protected $fillable = [
         'judul',
         'penulis',
+        'email',
         'kategori',
         'abstrak',
         'file_pdf',
+        'user_id',
     ];
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+public function review()
+{
+    return $this->hasOne(Review::class);
+}
+
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurnalController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,8 +28,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// arahakan admin ke dasbioard admin
+// arahakan admin ke dasboard admin
 Route::get('admin/dashboard', [HomeController::class, 'index']);
 
 //arahakan setelah berhasil upload jurnal
 Route::post('/jurnal', [JurnalController::class, 'store'])->name('jurnal.store');
+
+// review jurnal
+Route::get('/jurnalshow/{filename}', [JurnalController::class, 'showByFilename'])
+    ->where('filename', '.*')
+    ->name('jurnalshow');

@@ -4,14 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+       
+        {{-- icon awesome --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+        {{-- Flowbite --}}
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -20,9 +24,14 @@
         <div class="flex h-screen ">
             
             {{-- Sidebar dengan lebar tetap --}}
+            @unless(Route::is('jurnalshow'))
             <div class="w-64 bg-white dark:bg-gray-800">
                 @include('layouts.sidebar')
             </div>
+        @endunless
+        
+        
+
     
             {{-- Konten utama di samping sidebar --}}
             <div class="flex flex-col flex-1">
