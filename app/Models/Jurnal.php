@@ -20,13 +20,24 @@ class Jurnal extends Model
     ];
 
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function review()
-{
-    return $this->hasOne(Review::class);
-}
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
+
+    public function revisions()
+    {
+        return $this->hasMany(journal_revisions::class, 'journal_id');
+    }
+
+        public function hasilPenilaian()
+    {
+        return $this->hasMany(HasilPenilaian::class, 'jurnal_id');
+    }
+
 
 }
