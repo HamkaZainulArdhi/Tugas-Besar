@@ -12,7 +12,7 @@
                                   <div>
                                       <h3 class="font-semibold text-lg">{{ $revision->journal->judul }}</h3>
                                       <p class="text-sm text-gray-600">Direvisi oleh: {{ $revision->user->name }}</p>
-                                      {{-- <p class="text-sm text-gray-500">{{ $revision->created_at->format('d M Y H:i') }}</p> --}}
+                                      <p class="text-sm text-gray-500">{{ $revision->created_at->format('d M Y H:i') }}</p>
                                   </div>
                                   <a href="{{ asset('storage/' . $revision->file_pdf) }}" 
                                      target="_blank"

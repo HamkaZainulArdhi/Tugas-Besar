@@ -1,21 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RevisiController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\KategoriPenilaianController;
-
-
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\HasilPenilaianController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 
 // route juranl dan read jurnal di tabel admin
@@ -32,7 +32,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // arahakan admin ke dasboard admin
-Route::get('admin/dashboard', [HomeController::class, 'index']);
+// Route::get('admin/dashboard', [HomeController::class, 'index']);
+
 
 //arahakan setelah berhasil upload jurnal
 Route::post('/jurnal', [JurnalController::class, 'store'])->name('jurnal.store');
@@ -54,6 +55,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/kategori/{kategoriPenilaian}/edit', [KategoriPenilaianController::class, 'edit'])->name('kategori.edit');
     Route::put('/kategori/{kategoriPenilaian}', [KategoriPenilaianController::class, 'update'])->name('kategori.update');
     Route::delete('/kategori/{kategoriPenilaian}', [KategoriPenilaianController::class, 'destroy'])->name('kategori.destroy');
+    Route::resource('hasil-penilaian', HasilPenilaianController::class)->except(['create', 'store']);
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 // jurnal revisi
@@ -67,3 +70,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/jurnal/{id}/revision', [RevisiController::class, 'uploadRevision'])
         ->name('journal.revision.upload');
 });
+
+

@@ -13,11 +13,12 @@ class RevisiController extends Controller
     {
         if (auth()->user()->usertype === 'admin') {
             // For admin: load journals with user and assessment data
-            $jurnals = Jurnal::with(['user', 'HasilPenilaian.KategoriPenilaian', 'revisions'])
-                ->latest()
-                ->get();
-            $hasilPenilaians = null;
-            $catatan = null;
+            $jurnals = Jurnal::whereHas('revisions')  // This ensures only journals with revisions are loaded
+            ->with(['user', 'hasilPenilaian.kategoriPenilaian', 'hasilPenilaian.reviewer'])
+            ->latest()
+            ->get();
+        $hasilPenilaians = null;
+        $catatan = null;
         } else {
             // For user: load their journals with all related data
             $jurnals = Jurnal::where('user_id', auth()->id())

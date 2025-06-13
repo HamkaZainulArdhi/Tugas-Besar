@@ -8,4 +8,11 @@ class KategoriPenilaian extends Model
 {
     protected $fillable = ['aspek', 'deskripsi'];
     public $timestamps = false;
+    
+    public function hasilPenilaian()
+    {
+        return $this->hasMany(HasilPenilaian::class);
+    }
 }
+
+
