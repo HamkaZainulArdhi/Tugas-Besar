@@ -153,7 +153,7 @@
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Monthly Activity Chart
+        // aktivitas char
         const monthlyCtx = document.getElementById('monthlyChart');
         if (monthlyCtx) {
             new Chart(monthlyCtx, {
@@ -203,7 +203,7 @@
             });
         }
 
-        // Category Distribution Chart
+        // Category chart
         const categoryCtx = document.getElementById('categoryChart');
         if (categoryCtx) {
             new Chart(categoryCtx, {
