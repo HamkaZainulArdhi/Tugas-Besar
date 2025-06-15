@@ -12,14 +12,8 @@
         
         <!-- Header Brand -->
         <div class="mb-8">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <i class="fa-solid fa-book-open text-white text-lg"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold text-gray-900">Journal Review</h1>
-                    <p class="text-sm text-gray-600">Academic Publisher</p>
-                </div>
+            <div class=" items-center space-x-3">
+                <img src="{{ asset('logo.png') }}" alt="Logo" width="200" height="200" >
             </div>
         </div>
 
