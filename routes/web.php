@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RevisiController;
 use App\Http\Controllers\JurnalController;
@@ -9,9 +10,8 @@ use App\Http\Controllers\KategoriPenilaianController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\HasilPenilaianController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/download/{id}', [WelcomeController::class, 'download'])->name('welcome.download');
 
 Route::get('/dashboard', [UserDashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])

@@ -45,7 +45,7 @@
                     color="red" />
                     
                 <x-stat-card 
-                    title="Diterima" 
+                    title="Jurnal Diterima" 
                     :value="$acceptedJurnals" 
                     icon="check" 
                     color="green" />

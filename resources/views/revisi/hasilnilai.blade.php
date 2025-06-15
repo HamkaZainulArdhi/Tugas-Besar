@@ -7,7 +7,7 @@
                 </div>
                 <div>
                     <h2 class="font-bold text-2xl text-gray-900">
-                        {{ __('Hasil Penilaian Jurnal') }}
+                        {{ __('Hasil Revisi Jurnal') }}
                     </h2>
                     <p class="text-sm text-gray-600 mt-1">Pantau hasil review dan penilaian jurnal</p>
                 </div>
@@ -24,15 +24,14 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if(auth()->user()->usertype === 'admin')
                 <!-- Admin View -->
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/40 shadow-lg overflow-hidden">
-                    <div class="p-6">
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50/50">
+                                <thead class="bg-gray-50">
                                     <tr>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul Jurnal</th>
@@ -77,7 +76,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
                 </div>
             @else
                 <!-- User View -->

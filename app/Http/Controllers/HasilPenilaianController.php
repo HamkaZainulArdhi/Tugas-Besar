@@ -43,15 +43,23 @@ class HasilPenilaianController extends Controller
 
         $jurnal = Jurnal::findOrFail($id);
 
-        foreach ($request->hasil_penilaian as $hasilId => $data) {
-            HasilPenilaian::where('id', $hasilId)
+        if ($request->has('hasil_penilaian')) {
+            foreach ($request->hasil_penilaian as $hasilId => $data) {
+                HasilPenilaian::where('id', $hasilId)
+                    ->where('jurnal_id', $jurnal->id)
+                    ->update([
+                        'is_accepted' => $data['is_accepted'],
+                    ]);
+            }
+        
+            $firstId = array_key_first($request->hasil_penilaian);
+            HasilPenilaian::where('id', $firstId)
                 ->where('jurnal_id', $jurnal->id)
                 ->update([
-                    'is_accepted' => $data['is_accepted'],
-                    'catatan' => $data['catatan']
+                    'catatan' => $request->catatan,
                 ]);
         }
-
+        
         return redirect()->route('hasil-penilaian.index')
             ->with('success', 'Hasil penilaian berhasil diperbarui');
     }

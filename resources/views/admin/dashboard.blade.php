@@ -28,27 +28,27 @@
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                 <x-stat-card 
-                    title="Total Users" 
+                    title="Total Publisher" 
                     :value="$totalUsers" 
-                    icon="users" 
+                    icon="user-group" 
                     color="blue" />
                     
                 <x-stat-card 
                     title="Total Reviews" 
                     :value="$totalReviews" 
-                    icon="clipboard-check" 
+                    icon="check-circle" 
                     color="green" />
                     
                 <x-stat-card 
-                    title="Total Revisions" 
+                    title="Jurnal Revisi" 
                     :value="$totalRevisions" 
-                    icon="refresh" 
+                    icon="arrow-path" 
                     color="yellow" />
                     
                 <x-stat-card 
-                    title="Active Categories" 
+                    title="Kategori Aktifitas" 
                     :value="$popularCategories->count()" 
-                    icon="list" 
+                    icon="squares-2x2" 
                     color="purple" />
             </div>
 
@@ -57,7 +57,7 @@
                 <!-- Monthly Activity Chart -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900">Monthly Activity</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Aktiftas Bulanan</h3>
                     </div>
                     <div class="p-6">
                         <canvas id="monthlyChart"></canvas>
@@ -67,7 +67,7 @@
                 <!-- Category Distribution Chart -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900">Journal Categories</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Kategori Jurnal</h3>
                     </div>
                     <div class="p-6">
                         <canvas id="categoryChart"></canvas>
@@ -80,7 +80,7 @@
                 <!-- Recent Journals -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900">Recent Journals</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Jurnal Terbaru</h3>
                     </div>
                     <div class="divide-y divide-gray-200">
                         @forelse($recentJurnals as $jurnal)
@@ -97,7 +97,7 @@
                             </div>
                         @empty
                             <div class="p-4 text-center text-gray-500">
-                                No journals uploaded yet
+                                Tidak ada jurnal terbaru
                             </div>
                         @endforelse
                     </div>
@@ -122,7 +122,7 @@
                             </div>
                         @empty
                             <div class="p-4 text-center text-gray-500">
-                                No reviewers found
+                                Tidak ada reviewer teratas
                             </div>
                         @endforelse
                     </div>
@@ -132,7 +132,7 @@
             <!-- Popular Categories -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
                 <div class="px-6 py-4 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Popular Assessment Categories</h3>
+                    <h3 class="text-lg font-semibold text-gray-900">Kategori Penilaian</h3>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
