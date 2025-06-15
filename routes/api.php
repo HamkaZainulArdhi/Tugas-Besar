@@ -6,13 +6,13 @@ use App\Http\Controllers\API\HasilPenilaianController;
 use App\Http\Controllers\API\KategoriNilai;
 use App\Http\Controllers\API\JournalRevisionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\API\ApiRegisteredUserController;
 
 
-Route::post('/register', [RegisteredUserController::class, 'store']);
-Route::get('/users', [RegisteredUserController::class, 'index']);
-Route::delete('/users/{id}', [RegisteredUserController::class, 'destroy']);
-Route::put('/users/{id}', [RegisteredUserController::class, 'update']);
+Route::post('/register', [ApiRegisteredUserController::class, 'store']);
+Route::get('/users', [ApiRegisteredUserController::class, 'index']);
+Route::delete('/users/{id}', [ApiRegisteredUserController::class, 'destroy']);
+Route::put('/users/{id}', [ApiRegisteredUserController::class, 'update']);
 
 
 Route::get('/jurnals', [APIjurnal::class, 'index']);
