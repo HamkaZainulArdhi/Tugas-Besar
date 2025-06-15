@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Jurnal;
+
 
 class journal_revisions extends Model
 {

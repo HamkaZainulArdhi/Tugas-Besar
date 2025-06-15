@@ -14,12 +14,32 @@ use Exception;
 
 class JurnalController extends Controller
 {
-    public function index()
-    {
-        $jurnals = Jurnal::latest()->get();
-        return view('jurnal.jurnalmain', compact('jurnals'));
+    public function index(Request $request)
+{
+    $query = Jurnal::query();
+
+    // Search functionality
+    if ($request->has('search')) {
+        $search = $request->search;
+        $query->where(function($q) use ($search) {
+            $q->where('judul', 'like', '%'.$search.'%')
+              ->orWhere('penulis', 'like', '%'.$search.'%');
+        });
     }
 
+    // Category filter
+    if ($request->has('kategori') && !empty($request->kategori)) {
+        $query->where('kategori', $request->kategori);
+    }
+
+    // Get categories for filter dropdown
+    $categories = Jurnal::distinct('kategori')->pluck('kategori');
+
+    // Paginate results
+    $jurnals = $query->latest()->paginate(6)->withQueryString();
+
+    return view('jurnal.jurnalmain', compact('jurnals', 'categories'));
+}
     public function store(Request $request)
     {   
     try {

@@ -55,4 +55,8 @@ public function reviews()
 {
     return $this->hasMany(Review::class, 'reviewer_id');
 }
+public function hasilPenilaian()
+{
+    return $this->hasMany(HasilPenilaian::class, 'reviewer_id');
+}
 }

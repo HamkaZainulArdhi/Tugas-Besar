@@ -70,13 +70,25 @@
         <!-- Navigation Menu -->
         <nav class="flex-1 space-y-1">
             <!-- Dashboard -->
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" 
-                class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
+            @auth
+                @if (auth()->user()->usertype === 'admin')
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" 
+                class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-house w-5 h-3 {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
+                    <i class="fa-solid fa-house w-5 h-3 {{ request()->routeIs('admin.dashboard') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
                     <span class="ml-3">{{ __('Dashboard') }}</span>
                 </div>
             </x-nav-link>
+                @else
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" 
+                    class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-house w-5 h-3 {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
+                        <span class="ml-3">{{ __('Dashboard') }}</span>
+                    </div>
+                </x-nav-link>
+                @endif
+            @endauth
         
             <!-- Jurnal -->
             <x-nav-link :href="route('jurnal')" :active="request()->routeIs('jurnal')" 
@@ -87,14 +99,6 @@
                 </div>
             </x-nav-link>
 
-            <x-nav-link :href="route('hasil.nilai')" :active="request()->routeIs('hasil.*')" 
-                class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('hasil.*') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
-                <div class="flex items-center">
-                    <i class="fa-solid fa-list-check w-5 h-3 {{ request()->routeIs('hasil.*') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
-                    <span class="ml-3">{{ __('Revisi') }}</span>
-                </div>
-            </x-nav-link>
-        
             <!-- Kategori Penilaian -->
             @auth
             {{-- Untuk Admin --}}
@@ -107,8 +111,24 @@
                         <span class="ml-3">{{ __('Kategori Penilaian') }}</span>
                     </div>
                 </x-nav-link>
+
+                <x-nav-link :href="route('hasil-penilaian.index')" :active="request()->routeIs('hasil-penilaian.*')" 
+                    class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('hasil-penilaian.*') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-clipboard-check w-5 h-3 {{ request()->routeIs('hasil-penilaian.*') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
+                        <span class="ml-3">{{ __('Hasil Penilaian') }}</span>
+                    </div>
+                </x-nav-link>
             @endif
             @endauth
+
+            <x-nav-link :href="route('hasil.nilai')" :active="request()->routeIs('hasil.*')" 
+                class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('hasil.*') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-file-pen w-5 h-3 {{ request()->routeIs('hasil.*') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
+                    <span class="ml-3">{{ __('Revisi') }}</span>
+                </div>
+            </x-nav-link>
 
         </nav>  
 
