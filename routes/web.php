@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,9 @@ Route::get('/dashboard', [UserDashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// Route ke chatbot
+Route::get('/chatbot', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/chatbot/send', [ChatController::class, 'sendMessage'])->name('chat.send');
 
 // route juranl dan read jurnal di tabel admin
 Route::get('/jurnal', [JurnalController::class, 'index'])
