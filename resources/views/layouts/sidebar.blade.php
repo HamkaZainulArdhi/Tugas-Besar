@@ -124,6 +124,15 @@
                 </div>
             </x-nav-link>
 
+            <x-nav-link :href="route('chat.index')" :active="request()->routeIs('chat.*')" 
+                class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group {{ request()->routeIs('chat.*') ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' : 'text-gray-600 hover:text-gray-900 hover:bg-blue-500' }}">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-robot w-5 h-3 {{ request()->routeIs('chat.*') ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-100' }} transition-colors duration-200"></i>
+                    <span class="ml-3">{{ __('AI Asisten Jurnalmu') }}</span>
+                </div>
+            </x-nav-link>
+            
+
         </nav>  
 
         <!-- Footer -->
